@@ -1,0 +1,8 @@
+body {
+  background-color: rgb(255, 255, 255);
+}
+.popup-content {
+  width: 20%;
+  padding: 0px;
+  border-radius: 5px;
+}
