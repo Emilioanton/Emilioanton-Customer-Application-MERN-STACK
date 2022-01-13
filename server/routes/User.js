@@ -84,6 +84,7 @@ userRouter.delete("/:id", (req, res) => {
 });
 
 userRouter.put("/:id", async (req, res) => {
+  //Edituser in admin mode and edit own user, (covers both therefore so long)
   const _id = req.params.id;
   let newusername = req.body.username;
   let users = await User.findOne({ $or: [{ username: newusername }] }, "-password");
@@ -179,7 +180,7 @@ userRouter.put("/:id", async (req, res) => {
   }
 });
 
-/*userRouter.get('/habibi2', async (req,res) => {
+/*userRouter.get('/changeOldData', async (req,res) => { // Api to change old WebRel data to new form
 try {
     const Allusers = await User.find();
         

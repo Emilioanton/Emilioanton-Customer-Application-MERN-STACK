@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
-import { FormGroup, FormControl, InputLabel, FilledInput, Input, Button, Typography, Box, Switch, TextField } from "@mui/material";
+import React, { useState, useEffect, useRef } from "react";
+import { FormGroup, FormControl, InputLabel, Input, Button, Typography, Box, Switch, TextField } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useNavigate, useParams } from "react-router-dom";
 import UserService from "../Services/UserService";
 import Message from "../Components/Message";
 import ArrowBack from "@mui/icons-material/ArrowBack";
 import Edit from "@mui/icons-material/Edit";
-import { AuthContext } from "../Context/AuthContext";
 
 const initialValue = {
   companyname: "",
@@ -28,7 +27,6 @@ const useStyles = makeStyles({
 
 const EditUser = () => {
   const [user, setUser] = useState(initialValue);
-  // const { isAuthenticated, user, setIsAuthenticated, setUser } = useContext(AuthContext);
   const { companyname, username, role, custnumb, language, password } = user;
   const [message, setMessage] = useState(null);
   const [isSwitchOn, setIsSwitchOn] = useState(false);
@@ -41,11 +39,13 @@ const EditUser = () => {
     loadUserDetails();
   }, []);
 
+  // Receives and handles information about the current user you are editing.
   const loadUserDetails = async () => {
     const response = await UserService.getUserById(id);
     setUser(response);
   };
 
+  // Onsubmit post new data and receive message from server then navigate to /admin.
   const editUserDetails = async () => {
     await UserService.updateUsers(user).then((data) => {
       const { message } = data;
@@ -79,14 +79,6 @@ const EditUser = () => {
       return false;
     }
   };
-
-  const defLang = () => {
-    if (ifLangChecked(true)) {
-      return (user.language = "EN");
-    } else {
-      return (user.language = "SV");
-    }
-  };
   // END
 
   // Switch controller for make admin
@@ -104,14 +96,6 @@ const EditUser = () => {
       return true;
     } else {
       return false;
-    }
-  };
-
-  const defAdmin = () => {
-    if (ifAdminChecked(true)) {
-      return (user.role = "admin");
-    } else {
-      return (user.role = "user");
     }
   };
   // END

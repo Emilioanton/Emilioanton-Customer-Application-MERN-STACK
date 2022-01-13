@@ -5,7 +5,6 @@ import AuthService from "../Services/AuthService";
 import { AuthContext } from "../Context/AuthContext";
 import useStyles from "../styles/styles";
 import hydroware from "../images/hydroware.png";
-import Login from "./Login";
 import { useNavigate } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Menu from "@mui/material/Menu";
@@ -45,7 +44,7 @@ const Navbar = () => {
     setAnchorEl(null);
   };
 
-  const handleCloseContact = (e) => {
+  const handleCloseContact = () => {
     setOpenContact(false);
   };
 
@@ -56,7 +55,7 @@ const Navbar = () => {
     setAnchorEl(null);
   };
 
-  const handleCloseEdit = (e) => {
+  const handleCloseEdit = () => {
     setOpenEdit(false);
   };
 
@@ -133,9 +132,6 @@ const Navbar = () => {
       <>
         <Button to="/" component={Link} color="inherit">
           Home
-        </Button>
-        <Button to="/todos" component={Link} color="inherit">
-          Todos
         </Button>
         {user.role === "admin" ? (
           <Button to="/admin" component={Link} color="inherit">
