@@ -10,7 +10,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 mongoose.set('useCreateIndex', true);
-mongoose.connect('mongodb://localhost:27017/webreldb',{ useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false },()=>{
+mongoose.connect('mongodb://localhost:27017/DBNAME',{ useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false },()=>{
     console.log('successfully connected to database');
 });
 
